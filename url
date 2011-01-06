@@ -1,0 +1,50 @@
+http://www.trilug.org/~kjotte/progcon/
+
+####################################
+Well, contest is kind of a misnomer. No prizes, just amusement.
+
+Anyway, the challenge: port l0pht's hp.c (don't worry, it's a harmless prank) to as many different programming/scripting languages as possible. Functionality must be the same. Implement as much as possible in the chosen language (eg: no shelling out to other languages to do bits). Bonus points for code elegance (now mind you, those are "Whose Line is it Anyway?" type points :).
+
+UPDATE: If you don't have an HP printer to test on, at least check your code by firing up netcat thusly:
+$ nc -l -p 9100 | hexdump -C
+and then firing off your test program at localhost. This will determine whether your program is producing the proper data stream.
+
+Here is a sample output from the real hp.c:
+
+kjotte@reliant:~$ nc -l -p 9100 | hexdump -C & ./hp localhost "test message"
+[1] 27782
+HP Display hack -- sili@l0pht.com
+Hostname:   localhost
+Message: test message
+Connecting....
+Sent 58 bytes
+
+00000000  1b 25 2d 31 32 33 34 35  58 40 50 4a 4c 20 52 44  |.%-12345X@PJL RD|
+00000010  59 4d 53 47 20 44 49 53  50 4c 41 59 20 3d 20 22  |YMSG DISPLAY = "|
+00000020  74 65 73 74 20 6d 65 73  73 61 67 65 22 0d 0a 1b  |test message"...|
+00000030  25 2d 31 32 33 34 35 58  0d 0a                    |%-12345X..|
+0000003a
+
+[1]+  Done                    nc -l -p 9100 | hexdump -C
+
+#######################################
+
+language	contributer 		code		comments
+python		kevin otte		hp.py
+perl		Tanner lovelace		hp.pl
+java		owen berry		HP.java
+ada 		William Sutton		hp.adb		Requires Ada sockets library
+PHP		noel forbes		hp.php		Requires PHP>4.2.0 and php is complied with sockets
+Ruby		Stephen Ball		hp.rb
+ #######
+
+At some point my little contest made it outside the confines of the LUG. I think I posted it in response to a blog or something. They say the mind is the last thing to go ... :)
+
+Here are the continuing submissions:
+
+language	contributer 		code		comments
+lisp		bob krzaczek		hp.lisp		requires CLISP
+(g)awk		costin stroie		hp.awk
+c#		kent bolton		hp.cs
+
+
